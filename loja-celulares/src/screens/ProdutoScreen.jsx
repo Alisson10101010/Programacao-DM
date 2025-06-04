@@ -1,30 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
-import { Card, Text } from "react-native-paper";
-import api from "../services/api";
+import React, { useEffect, useState } from 'react';
+import { View, FlatList, StyleSheet } from 'react-native';
+import CelularCard from '../components/CelularCard';
+import api from '../services/api';
 
-export default function ProdutoScreen({ route }) {
-  const { id } = route.params;
-  const [produto, setProduto] = useState(null);
+export default function ProdutoScreen() {
+  const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
-    api.get(`/products/${id}`).then((res) => setProduto(res.data));
+    carregarProdutos();
   }, []);
 
-  if (!produto) return <Text>Carregando...</Text>;
+  const carregarProdutos = async () => {
+    const response = await api.get('/products/category/smartphones');
+    setProdutos(response.data.products);
+  };
 
   return (
-    <ScrollView>
-      <Card style={{ margin: 10 }}>
-        <Card.Cover source={{ uri: produto.thumbnail }} />
-        <Card.Title title={produto.title} />
-        <Card.Content>
-          <Text>Descrição: {produto.description}</Text>
-          <Text>Preço: R$ {produto.price}</Text>
-          <Text>Marca: {produto.brand}</Text>
-          <Text>Estoque: {produto.stock}</Text>
-        </Card.Content>
-      </Card>
-    </ScrollView>
+    <View style={styles.container}>
+      <FlatList
+        data={produtos}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <CelularCard celular={item} />}
+      />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+});

@@ -1,31 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { FlatList } from "react-native";
-import { Button, Card } from "react-native-paper";
-import api from "../services/api";
+import React, { useEffect, useState } from 'react';
+import { View, FlatList, StyleSheet, Text } from 'react-native';
+import CelularCard from '../components/CelularCard';
+import api from '../services/api';
 
-export default function ListaProdutosScreen({ route, navigation }) {
-  const { categoria } = route.params;
+export default function ListaProdutosScreen() {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
-    api.get(`/products/category/${categoria}`).then((res) => setProdutos(res.data.products));
+    carregarProdutos();
   }, []);
 
+  const carregarProdutos = async () => {
+    const response = await api.get('/products');
+    setProdutos(response.data.products);
+  };
+
   return (
-    <FlatList
-      data={produtos}
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => (
-        <Card style={{ margin: 10 }}>
-          <Card.Cover source={{ uri: item.thumbnail }} />
-          <Card.Title title={item.title} subtitle={`R$ ${item.price}`} />
-          <Card.Actions>
-            <Button onPress={() => navigation.navigate("Produto", { id: item.id })}>
-              Detalhes
-            </Button>
-          </Card.Actions>
-        </Card>
-      )}
-    />
+    <View style={styles.container}>
+      <FlatList
+        data={produtos}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <CelularCard celular={item} />}
+      />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+});

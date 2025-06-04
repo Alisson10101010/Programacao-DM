@@ -1,22 +1,39 @@
-import React from "react";
-import { Card, Button, Text } from "react-native-paper";
+import React from 'react';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
-export default function CelularCard({ celular, editar, excluir }) {
+export default function CelularCard({ celular }) {
   return (
-    <Card style={{ margin: 10 }}>
-      <Card.Cover source={{ uri: celular.thumbnail }} />
-      <Card.Title
-        title={celular.title || celular.nome}
-        subtitle={`R$ ${celular.price || celular.preco}`}
-      />
-      <Card.Content>
-        <Text>Marca: {celular.brand || celular.marca}</Text>
-        <Text>Descrição: {celular.description || celular.descricao}</Text>
-      </Card.Content>
-      <Card.Actions>
-        <Button onPress={editar}>Editar</Button>
-        <Button onPress={excluir}>Excluir</Button>
-      </Card.Actions>
-    </Card>
+    <View style={styles.card}>
+      <Image source={{ uri: celular.thumbnail }} style={styles.imagem} />
+      <View style={{ flex: 1 }}>
+        <Text style={styles.nome}>{celular.title}</Text>
+        <Text style={styles.preco}>${celular.price}</Text>
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  card: {
+    flexDirection: 'row',
+    backgroundColor: '#f5f5f5',
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  imagem: {
+    width: 70,
+    height: 70,
+    marginRight: 10,
+    borderRadius: 8,
+  },
+  nome: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  preco: {
+    fontSize: 16,
+    color: 'green',
+  },
+});

@@ -1,95 +1,83 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, Alert, View } from "react-native";
-import { Button, TextInput, Text } from "react-native-paper";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useState } from 'react';
+import { View, TextInput, Button, StyleSheet, Text, Alert } from 'react-native';
+import api from '../services/api';
 
-export default function FormCelularScreen({ navigation, route }) {
-  const celularEdit = route.params?.celular;
+export default function FormCelularScreen() {
+  const [nome, setNome] = useState('');
+  const [preco, setPreco] = useState('');
+  const [imagem, setImagem] = useState('');
 
-  const [nome, setNome] = useState("");
-  const [marca, setMarca] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [preco, setPreco] = useState("");
-  const [imagem, setImagem] = useState("");
-
-  useEffect(() => {
-    if (celularEdit) {
-      setNome(celularEdit.title || celularEdit.nome);
-      setMarca(celularEdit.brand || celularEdit.marca);
-      setDescricao(celularEdit.description || celularEdit.descricao);
-      setPreco(celularEdit.price?.toString() || celularEdit.preco?.toString());
-      setImagem(celularEdit.thumbnail || "");
-    }
-  }, []);
-
-  const salvar = async () => {
-    if (!nome || !marca || !descricao || !preco) {
-      Alert.alert("Erro", "Preencha todos os campos!");
+  const salvarCelular = async () => {
+    if (nome === '' || preco === '' || imagem === '') {
+      Alert.alert('Erro', 'Preencha todos os campos');
       return;
     }
 
-    const dados = await AsyncStorage.getItem("@celulares");
-    const celulares = dados ? JSON.parse(dados) : [];
+    try {
+      const response = await api.post('/products/add', {
+        title: nome,
+        price: parseFloat(preco),
+        thumbnail: imagem,
+      });
 
-    if (celularEdit && celularEdit.id) {
-      const novos = celulares.map((item) =>
-        item.id === celularEdit.id
-          ? { ...item, nome, marca, descricao, preco, thumbnail: imagem }
-          : item
-      );
-      await AsyncStorage.setItem("@celulares", JSON.stringify(novos));
-    } else {
-      const novo = {
-        id: Date.now(),
-        nome,
-        marca,
-        descricao,
-        preco,
-        thumbnail: imagem || "https://cdn-icons-png.flaticon.com/512/60/60577.png",
-      };
-      await AsyncStorage.setItem("@celulares", JSON.stringify([...celulares, novo]));
+      Alert.alert('Sucesso', `Celular salvo (Fake)\nID: ${response.data.id}`);
+      setNome('');
+      setPreco('');
+      setImagem('');
+    } catch (error) {
+      Alert.alert('Erro', 'Não foi possível salvar o celular');
+      console.log(error);
     }
-
-    navigation.goBack();
   };
 
   return (
-    <ScrollView style={{ padding: 10 }}>
+    <View style={styles.container}>
+      <Text style={styles.title}>Cadastro de Celular</Text>
+
       <TextInput
-        label="Nome"
+        style={styles.input}
+        placeholder="Nome do Celular"
         value={nome}
         onChangeText={setNome}
-        style={{ marginBottom: 10 }}
       />
+
       <TextInput
-        label="Marca"
-        value={marca}
-        onChangeText={setMarca}
-        style={{ marginBottom: 10 }}
-      />
-      <TextInput
-        label="Descrição"
-        value={descricao}
-        onChangeText={setDescricao}
-        multiline
-        style={{ marginBottom: 10 }}
-      />
-      <TextInput
-        label="Preço"
+        style={styles.input}
+        placeholder="Preço"
         value={preco}
         onChangeText={setPreco}
         keyboardType="numeric"
-        style={{ marginBottom: 10 }}
       />
+
       <TextInput
-        label="URL da Imagem"
+        style={styles.input}
+        placeholder="URL da Imagem"
         value={imagem}
         onChangeText={setImagem}
-        style={{ marginBottom: 10 }}
       />
-      <Button mode="contained" onPress={salvar}>
-        Salvar
-      </Button>
-    </ScrollView>
+
+      <Button title="Salvar" onPress={salvarCelular} />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    gap: 20,
+    padding: 20,
+  },
+  title: {
+    fontSize: 22,
+    marginBottom: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#999',
+    borderRadius: 5,
+    padding: 10,
+  },
+});

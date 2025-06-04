@@ -1,29 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { FlatList } from "react-native";
-import { Button, Card, Text } from "react-native-paper";
-import api from "../services/api";
+import React from 'react';
+import { View, Button, StyleSheet, Text } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
-  const [categorias, setCategorias] = useState([]);
-
-  useEffect(() => {
-    api.get("/products/categories").then((res) => setCategorias(res.data));
-  }, []);
-
   return (
-    <FlatList
-      data={categorias}
-      keyExtractor={(item) => item}
-      renderItem={({ item }) => (
-        <Card style={{ margin: 10 }}>
-          <Card.Title title={item.toUpperCase()} />
-          <Card.Actions>
-            <Button onPress={() => navigation.navigate("Produtos", { categoria: item })}>
-              Ver Produtos
-            </Button>
-          </Card.Actions>
-        </Card>
-      )}
-    />
+    <View style={styles.container}>
+      <Text style={styles.title}>Bem-vindo à Loja Mundo Mobille 📱</Text>
+      <Button title="Produtos" onPress={() => navigation.navigate('Produtos')} />
+      <Button title="Lista de Produtos" onPress={() => navigation.navigate('Lista de Produtos')} />
+      <Button title="CRUD" onPress={() => navigation.navigate('CRUD')} />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    gap: 20,
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    textAlign: 'center',
+    marginBottom: 30,
+    fontWeight: 'bold',
+  },
+});
