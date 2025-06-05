@@ -8,6 +8,10 @@ import ListaProdutosScreen from './src/screens/ListaProdutosScreen';
 import CrudCelularesScreen from './src/screens/CrudCelularesScreen';
 import FormCelularScreen from './src/screens/FormCelularScreen';
 
+import DashboardScreen from './src/screens/DashboardScreen';
+
+
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -19,6 +23,8 @@ export default function App() {
         <Stack.Screen name="Lista de Produtos" component={ListaProdutosScreen} />
         <Stack.Screen name="CRUD" component={CrudCelularesScreen} />
         <Stack.Screen name="Formulário" component={FormCelularScreen} />
+        <Stack.Screen name="Dashboard" component={DashboardScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
