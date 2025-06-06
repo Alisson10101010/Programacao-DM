@@ -5,12 +5,10 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bem-vindo à Loja Mundo Mobille 📱</Text>
-
       <Button title="Produtos" onPress={() => navigation.navigate('Produtos')} />
       <Button title="Lista de Produtos" onPress={() => navigation.navigate('Lista de Produtos')} />
       <Button title="CRUD" onPress={() => navigation.navigate('CRUD')} />
-      <Button title="Dashboard" onPress={() => navigation.navigate('Dashboard')} /> {/* 🔥 Botão adicionado aqui */}
-
+      <Button title="Dashboard" onPress={() => navigation.navigate('Dashboard')} />
     </View>
   );
 }
@@ -19,7 +17,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    gap: 20,  // funciona se seu projeto estiver no Expo SDK mais recente
+    gap: 20,
     padding: 20,
   },
   title: {

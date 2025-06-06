@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
-import CelularCard from '../components/CelularCard';
+import { View, FlatList } from 'react-native';
 import api from '../services/api';
+import CelularCard from '../components/CelularCard';
 
 export default function ProdutoScreen() {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
-    carregarProdutos();
+    api.get('/products/category/smartphones').then((res) => {
+      setProdutos(res.data.products);
+    });
   }, []);
 
-  const carregarProdutos = async () => {
-    const response = await api.get('/products/category/smartphones');
-    setProdutos(response.data.products);
-  };
-
   return (
-    <View style={styles.container}>
+    <View>
       <FlatList
         data={produtos}
         keyExtractor={(item) => item.id.toString()}
@@ -25,10 +22,3 @@ export default function ProdutoScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-});

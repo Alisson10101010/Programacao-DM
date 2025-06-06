@@ -1,98 +1,106 @@
 import React, { useState } from 'react';
-import { View, Text, Button, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+
+const dadosVendas = [
+  { id: 1, nome: 'iPhone 14', data: '2025-06-03', quantidade: 2, valor: 8000 },
+  { id: 2, nome: 'Samsung A54', data: '2025-06-03', quantidade: 3, valor: 4500 },
+  { id: 3, nome: 'Xiaomi Note 11', data: '2025-06-04', quantidade: 1, valor: 1500 },
+  { id: 4, nome: 'Motorola G73', data: '2025-05-28', quantidade: 2, valor: 2000 },
+  { id: 5, nome: 'iPhone 14', data: '2025-06-05', quantidade: 1, valor: 4000 },
+];
+
+const diasSemana = ['Todos', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
+const meses = ['Todos', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'];
+const anos = ['Todos', '2024', '2025'];
 
 export default function DashboardScreen() {
-  const [filtro, setFiltro] = useState('semana');
-  const [categoria, setCategoria] = useState('todos');
+  const [diaSelecionado, setDiaSelecionado] = useState('Todos');
+  const [mesSelecionado, setMesSelecionado] = useState('Todos');
+  const [anoSelecionado, setAnoSelecionado] = useState('2025');
 
-  const dados = {
-    semana: {
-      vendas: 15,
-      lancamentos: [
-        { id: '1', nome: 'iPhone 15 Pro Max', categoria: 'Apple', status: 'Lançamento' },
-        { id: '2', nome: 'Samsung Galaxy S24 Ultra', categoria: 'Samsung', status: 'Em Estoque' },
-      ],
-    },
-    mes: {
-      vendas: 55,
-      lancamentos: [
-        { id: '3', nome: 'Xiaomi 14 Ultra', categoria: 'Xiaomi', status: 'Esgotado' },
-        { id: '4', nome: 'Motorola Edge 50 Pro', categoria: 'Motorola', status: 'Em Estoque' },
-        { id: '5', nome: 'OnePlus 12R', categoria: 'OnePlus', status: 'Lançamento' },
-      ],
-    },
+  const filtrarVendas = () => {
+    return dadosVendas.filter((venda) => {
+      const data = new Date(venda.data);
+      const diaSemana = diasSemana[data.getDay() + 1]; // getDay: 0=Domingo
+      const mes = meses[data.getMonth() + 1];
+      const ano = data.getFullYear().toString();
+
+      const condDia = diaSelecionado === 'Todos' || diaSelecionado === diaSemana;
+      const condMes = mesSelecionado === 'Todos' || mesSelecionado === mes;
+      const condAno = anoSelecionado === 'Todos' || anoSelecionado === ano;
+
+      return condDia && condMes && condAno;
+    });
   };
 
-  const dadosFiltrados = filtro === 'semana' ? dados.semana : dados.mes;
-
-  const lancamentosFiltrados = categoria === 'todos'
-    ? dadosFiltrados.lancamentos
-    : dadosFiltrados.lancamentos.filter(item => item.categoria === categoria);
-
-  const categoriasDisponiveis = ['todos', 'Apple', 'Samsung', 'Xiaomi', 'Motorola', 'OnePlus'];
+  const vendasFiltradas = filtrarVendas();
+  const totalVendas = vendasFiltradas.reduce((total, item) => total + item.valor, 0);
+  const quantidadeProdutos = vendasFiltradas.reduce((total, item) => total + item.quantidade, 0);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>📊 Dashboard Interativo</Text>
+      <Text style={styles.titulo}>📊 Dashboard de Vendas</Text>
 
-      <View style={styles.botoes}>
-        <Button
-          title="Semana"
-          onPress={() => setFiltro('semana')}
-          color={filtro === 'semana' ? 'blue' : 'gray'}
-        />
-        <Button
-          title="Mês"
-          onPress={() => setFiltro('mes')}
-          color={filtro === 'mes' ? 'blue' : 'gray'}
-        />
+      <View style={styles.filtros}>
+        <View style={styles.pickerContainer}>
+          <Text style={styles.label}>Dia:</Text>
+          <Picker
+            selectedValue={diaSelecionado}
+            style={styles.picker}
+            onValueChange={(value) => setDiaSelecionado(value)}
+          >
+            {diasSemana.map((dia) => (
+              <Picker.Item key={dia} label={dia} value={dia} />
+            ))}
+          </Picker>
+        </View>
+
+        <View style={styles.pickerContainer}>
+          <Text style={styles.label}>Mês:</Text>
+          <Picker
+            selectedValue={mesSelecionado}
+            style={styles.picker}
+            onValueChange={(value) => setMesSelecionado(value)}
+          >
+            {meses.map((mes) => (
+              <Picker.Item key={mes} label={mes} value={mes} />
+            ))}
+          </Picker>
+        </View>
+
+        <View style={styles.pickerContainer}>
+          <Text style={styles.label}>Ano:</Text>
+          <Picker
+            selectedValue={anoSelecionado}
+            style={styles.picker}
+            onValueChange={(value) => setAnoSelecionado(value)}
+          >
+            {anos.map((ano) => (
+              <Picker.Item key={ano} label={ano} value={ano} />
+            ))}
+          </Picker>
+        </View>
       </View>
 
-      <Text style={styles.info}>
-        Total de vendas na {filtro}: <Text style={styles.numero}>{dadosFiltrados.vendas}</Text>
-      </Text>
+      <View style={styles.cardResumo}>
+        <Text style={styles.textResumo}>💰 Total de Vendas: R$ {totalVendas}</Text>
+        <Text style={styles.textResumo}>📱 Celulares vendidos: {quantidadeProdutos}</Text>
+      </View>
 
-      <Text style={styles.subtitulo}>🗂️ Filtrar por categoria:</Text>
+      <Text style={styles.subtitulo}>📱 Vendas encontradas:</Text>
       <FlatList
-        data={categoriasDisponiveis}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item}
+        data={vendasFiltradas}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            style={[
-              styles.categoria,
-              categoria === item && styles.categoriaSelecionada,
-            ]}
-            onPress={() => setCategoria(item)}
-          >
-            <Text
-              style={[
-                styles.categoriaTexto,
-                categoria === item && styles.categoriaTextoSelecionado,
-              ]}
-            >
-              {item}
-            </Text>
-          </TouchableOpacity>
+          <View style={styles.card}>
+            <Text style={styles.nomeCelular}>{item.nome}</Text>
+            <Text>Quantidade: {item.quantidade}</Text>
+            <Text>Valor: R$ {item.valor}</Text>
+            <Text>Data: {item.data}</Text>
+          </View>
         )}
       />
-
-      <Text style={styles.subtitulo}>🚀 Lançamentos:</Text>
-      {lancamentosFiltrados.length > 0 ? (
-        <FlatList
-          data={lancamentosFiltrados}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View style={styles.item}>
-              <Text style={styles.nome}>{item.nome}</Text>
-              <Text style={styles.status}>📦 {item.status}</Text>
-            </View>
-          )}
-        />
-      ) : (
-        <Text style={styles.semDados}>Nenhum lançamento nessa categoria.</Text>
-      )}
     </View>
   );
 }
@@ -100,68 +108,62 @@ export default function DashboardScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
+    padding: 16,
+    backgroundColor: '#f0f4ff',
   },
   titulo: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: '#0055cc',
     textAlign: 'center',
     marginBottom: 20,
   },
-  botoes: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 15,
-  },
-  info: {
-    fontSize: 18,
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  numero: {
-    fontWeight: 'bold',
-    color: 'green',
-  },
   subtitulo: {
-    fontSize: 20,
+    fontSize: 18,
+    marginTop: 20,
+    marginBottom: 10,
     fontWeight: 'bold',
-    marginVertical: 10,
+    color: '#003399',
   },
-  categoria: {
-    backgroundColor: '#f1f1f1',
+  filtros: {
+    flexDirection: 'column',
+    gap: 12,
+  },
+  pickerContainer: {
+    backgroundColor: '#e0eaff',
     padding: 10,
-    borderRadius: 20,
-    marginRight: 10,
+    borderRadius: 10,
+    marginBottom: 10,
   },
-  categoriaSelecionada: {
-    backgroundColor: '#007bff',
-  },
-  categoriaTexto: {
-    color: '#000',
+  label: {
+    color: '#003399',
     fontWeight: '600',
   },
-  categoriaTextoSelecionado: {
-    color: '#fff',
+  picker: {
+    height: 40,
+    color: '#003399',
   },
-  item: {
-    backgroundColor: '#f9f9f9',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 8,
+  cardResumo: {
+    backgroundColor: '#cce0ff',
+    padding: 16,
+    borderRadius: 10,
+    marginTop: 16,
   },
-  nome: {
+  textResumo: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#002266',
+    marginBottom: 5,
+  },
+  card: {
+    backgroundColor: '#ffffff',
+    padding: 16,
+    borderRadius: 10,
+    marginBottom: 10,
+    elevation: 2,
+  },
+  nomeCelular: {
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  status: {
-    fontSize: 14,
-    color: 'gray',
-  },
-  semDados: {
-    textAlign: 'center',
-    marginTop: 20,
-    fontStyle: 'italic',
-    color: 'gray',
   },
 });

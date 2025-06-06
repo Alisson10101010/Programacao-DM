@@ -1,83 +1,87 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, Button, StyleSheet, ScrollView, Text, Alert } from 'react-native';
 import api from '../services/api';
 
-export default function FormCelularScreen() {
-  const [nome, setNome] = useState('');
+export default function FormCelularScreen({ route, navigation }) {
+  const produtoEditar = route.params?.produto;
+
+  const [titulo, setTitulo] = useState('');
   const [preco, setPreco] = useState('');
   const [imagem, setImagem] = useState('');
+  const [marca, setMarca] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [estoque, setEstoque] = useState('');
 
-  const salvarCelular = async () => {
-    if (nome === '' || preco === '' || imagem === '') {
-      Alert.alert('Erro', 'Preencha todos os campos');
-      return;
+  useEffect(() => {
+    if (produtoEditar) {
+      setTitulo(produtoEditar.title || '');
+      setPreco(produtoEditar.price?.toString() || '');
+      setImagem(produtoEditar.thumbnail || '');
+      setMarca(produtoEditar.brand || '');
+      setDescricao(produtoEditar.description || '');
+      setEstoque(produtoEditar.stock?.toString() || '');
+    }
+  }, [produtoEditar]);
+
+  const salvar = async () => {
+    if (!titulo || !preco) {
+      return Alert.alert('Preencha pelo menos nome e preço!');
     }
 
-    try {
-      const response = await api.post('/products/add', {
-        title: nome,
-        price: parseFloat(preco),
-        thumbnail: imagem,
-      });
+    const novoProduto = {
+      title: titulo,
+      price: parseFloat(preco),
+      thumbnail: imagem,
+      brand: marca,
+      description: descricao,
+      stock: parseInt(estoque),
+    };
 
-      Alert.alert('Sucesso', `Celular salvo (Fake)\nID: ${response.data.id}`);
-      setNome('');
-      setPreco('');
-      setImagem('');
+    try {
+      if (produtoEditar) {
+        await api.put(`/products/${produtoEditar.id}`, novoProduto);
+        Alert.alert('Produto editado com sucesso!');
+      } else {
+        await api.post('/products/add', novoProduto);
+        Alert.alert('Produto criado com sucesso!');
+      }
+      navigation.navigate('Lista de Produtos');
     } catch (error) {
-      Alert.alert('Erro', 'Não foi possível salvar o celular');
       console.log(error);
+      Alert.alert('Erro ao salvar o produto.');
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Cadastro de Celular</Text>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>{produtoEditar ? 'Editar Celular' : 'Novo Celular'}</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Nome do Celular"
-        value={nome}
-        onChangeText={setNome}
-      />
+      <TextInput style={styles.input} placeholder="Nome do celular" value={titulo} onChangeText={setTitulo} />
+      <TextInput style={styles.input} placeholder="Preço" keyboardType="numeric" value={preco} onChangeText={setPreco} />
+      <TextInput style={styles.input} placeholder="URL da imagem" value={imagem} onChangeText={setImagem} />
+      <TextInput style={styles.input} placeholder="Marca" value={marca} onChangeText={setMarca} />
+      <TextInput style={styles.input} placeholder="Descrição" value={descricao} onChangeText={setDescricao} multiline />
+      <TextInput style={styles.input} placeholder="Estoque" keyboardType="numeric" value={estoque} onChangeText={setEstoque} />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Preço"
-        value={preco}
-        onChangeText={setPreco}
-        keyboardType="numeric"
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="URL da Imagem"
-        value={imagem}
-        onChangeText={setImagem}
-      />
-
-      <Button title="Salvar" onPress={salvarCelular} />
-    </View>
+      <Button title="Salvar" onPress={salvar} />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    gap: 20,
     padding: 20,
+    gap: 15,
   },
   title: {
     fontSize: 22,
-    marginBottom: 20,
     textAlign: 'center',
+    marginBottom: 10,
     fontWeight: 'bold',
   },
   input: {
     borderWidth: 1,
-    borderColor: '#999',
-    borderRadius: 5,
     padding: 10,
+    borderRadius: 8,
   },
 });

@@ -1,34 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet, Text } from 'react-native';
-import CelularCard from '../components/CelularCard';
+import { View, FlatList, Text, StyleSheet } from 'react-native';
 import api from '../services/api';
 
 export default function ListaProdutosScreen() {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
-    carregarProdutos();
+    api.get('/products/category/smartphones')  // só smartphones aqui
+      .then(res => setProdutos(res.data.products))
+      .catch(err => console.log(err));
   }, []);
-
-  const carregarProdutos = async () => {
-    const response = await api.get('/products');
-    setProdutos(response.data.products);
-  };
 
   return (
     <View style={styles.container}>
       <FlatList
         data={produtos}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <CelularCard celular={item} />}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.item}>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text>Preço: R$ {item.price}</Text>
+            <Text>Marca: {item.brand}</Text>
+            <Text>Estoque: {item.stock}</Text>
+          </View>
+        )}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
+  container: { padding: 10 },
+  item: {
+    marginBottom: 12,
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 8,
   },
+  title: { fontWeight: 'bold', fontSize: 16 },
 });
