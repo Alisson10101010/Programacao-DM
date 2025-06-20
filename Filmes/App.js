@@ -8,7 +8,7 @@ import Filmes from './Componentes/Filmes'
 export default function App() {
   const listaFilmes = [
     {
-      nome: "Homem Aranha",
+      nome: "Homem Aranha 03",
       ano: 2020,
       diretor: "Jon Watts", 
       genero: "Aventura",
