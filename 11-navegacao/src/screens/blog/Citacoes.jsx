@@ -8,7 +8,7 @@ export default function Citacoes({ navigation }) {
       <Card style={styles.card}>
         <Card.Content>
           <Title>Citação 1</Title>
-          <Paragraph>Esta é uma citação de exemplo.</Paragraph>
+          <Paragraph>Esta citação de exemplo.</Paragraph>
         </Card.Content>
       </Card>
 
