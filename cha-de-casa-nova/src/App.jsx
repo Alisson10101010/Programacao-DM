@@ -29,7 +29,7 @@ import conjuntoDeXicaras from './assets/conjunto-de-xicaras.png'
 import jogoAmericano from './assets/jogo-americano.jpg'
 import baldeDeRoupa from './assets/balde-de-roupa.jpg'
 import jogoDeFacas from './assets/jogo-de-facas.jpg'
-import leiteira from './assets/leiteira.jpg'
+import jarra from './assets/jarra.jpg'
 import aventalDeCozinha from './assets/avental-de-cozinha.jpg'
 import escovaSanitaria from './assets/escova-sanitaria.jpg'
 import lixeiraParaBanheiro from './assets/lixeira-para-banheiro.jpg'
@@ -70,6 +70,27 @@ import portaDetergente from './assets/porta-detergente.jpg'
 import lixeiraDePia from './assets/lixeira-de-pia.jpg'
 import portaCopos from './assets/porta-copos.jpeg'
 import tapeteParaPorta from './assets/tapete-para-porta.jpg'
+import airFryer from "./assets/air-fryer.jpg";
+import almofadaMassageadora from "./assets/almofada-massageadora.jpg";
+import almofadas from "./assets/almofadas.jpg";
+import aspirador from "./assets/aspirador.jpg";
+import assadeiras from "./assets/assadeiras.jpg";
+import baldeLimpeza from "./assets/balde-limpeza.jpg";
+import chuveiro from "./assets/chuveiro.jpg";
+import cafeteira from "./assets/cafeteira.jpg";
+import caixaPrimeirosSocorros from "./assets/caixa-primeiros-socorros.jpg";
+import churrasqueira from "./assets/churrasqueira.jpg";
+import colcha from "./assets/colcha.jpg";
+import coposJantar from "./assets/copos-jantar.jpg";
+import cortinaQuarto from "./assets/cortina-quarto.jpg";
+import escorredor from "./assets/escorredor.jpg";
+import espelho from "./assets/espelho.jpg";
+import espremedorFrutas from "./assets/espremedor-frutas.jpg";
+import extensaoUsb from "./assets/extensao-usb.jpg";
+import filtro from "./assets/filtro.jpg";
+import forma from "./assets/forma.jpg";
+import grill from "./assets/grill.jpg";
+
 
 const presentesIniciais = [
   { id: 1, nome: 'Conjunto de talheres inox', imagem: conjuntoTalheresInox },
@@ -93,7 +114,7 @@ const presentesIniciais = [
   { id: 19, nome: 'Jogo americano', imagem: jogoAmericano },
   { id: 20, nome: 'Balde de roupa', imagem: baldeDeRoupa },
   { id: 21, nome: 'Jogo de facas', imagem: jogoDeFacas },
-  { id: 22, nome: 'Leiteira', imagem: leiteira },
+  { id: 22, nome: 'Jarra', imagem: jarra },
   { id: 23, nome: 'Avental de cozinha', imagem: aventalDeCozinha },
   { id: 24, nome: 'Escova sanitária', imagem: escovaSanitaria },
   { id: 25, nome: 'Lixeira para banheiro', imagem: lixeiraParaBanheiro },
@@ -134,6 +155,27 @@ const presentesIniciais = [
   { id: 60, nome: 'Lixeira de pia', imagem: lixeiraDePia },
   { id: 61, nome: 'Porta copos', imagem: portaCopos },
   { id: 62, nome: 'Tapete para porta', imagem: tapeteParaPorta },
+    { id: 63, nome: "Air Fryer", imagem: airFryer },
+  { id: 64, nome: "Almofada Massageadora", imagem: almofadaMassageadora },
+  { id: 65, nome: "Almofadas", imagem: almofadas },
+  { id: 66, nome: "Aspirador", imagem: aspirador },
+  { id: 67, nome: "Assadeiras", imagem: assadeiras },
+  { id: 68, nome: "Balde de Limpeza", imagem: baldeLimpeza },
+  { id: 69, nome: "Chuveiro", imagem: chuveiro },
+  { id: 70, nome: "Cafeteira", imagem: cafeteira },
+  { id: 71, nome: "Caixa de Primeiros Socorros", imagem: caixaPrimeirosSocorros },
+  { id: 72, nome: "Churrasqueira", imagem: churrasqueira },
+  { id: 73, nome: "Colcha", imagem: colcha },
+  { id: 74, nome: "Copos de Jantar", imagem: coposJantar },
+  { id: 75, nome: "Cortina para Quarto", imagem: cortinaQuarto },
+  { id: 76, nome: "Escorredor", imagem: escorredor },
+  { id: 77, nome: "Espelho", imagem: espelho },
+  { id: 78, nome: "Espremedor de Frutas", imagem: espremedorFrutas },
+  { id: 79, nome: "Extensão USB", imagem: extensaoUsb },
+  { id: 80, nome: "Filtro", imagem: filtro },
+  { id: 81, nome: "Forma", imagem: forma },
+  { id: 82, nome: "Grill", imagem: grill },
+
 ]
 
 function App() {
@@ -153,6 +195,7 @@ function App() {
     } else {
       setPresentes(presentesIniciais.map(p => ({ ...p, presenteadoPor: null })))
     }
+
     const nomeSalvo = localStorage.getItem('nomeCompleto')
     if (nomeSalvo) setNomeCompleto(nomeSalvo)
   }, [])
@@ -167,13 +210,20 @@ function App() {
     e.preventDefault()
     if (nomeCompleto && confirmarPresenca && quantasPessoas) {
       localStorage.setItem('nomeCompleto', nomeCompleto)
+
       let convidados = localStorage.getItem('convidadosConfirmados')
       convidados = convidados ? JSON.parse(convidados) : []
+
       const jaExiste = convidados.some(c => c.nome === nomeCompleto)
       if (!jaExiste) {
-        convidados.push({ nome: nomeCompleto, acompanhantes: quantasPessoas })
+        convidados.push({
+          nome: nomeCompleto,
+          acompanhantes: quantasPessoas,
+          resposta: confirmarPresenca,
+        })
         localStorage.setItem('convidadosConfirmados', JSON.stringify(convidados))
       }
+
       alert(`Obrigado ${nomeCompleto}! Sua presença foi confirmada.`)
       setMostrarFormulario(false)
     } else {
@@ -215,13 +265,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
       <header className="relative bg-white shadow-sm border-b border-pink-100 overflow-hidden min-h-64">
-        {/* Conteúdo do header */}
         <div className="relative z-10 container mx-auto px-4 py-16 text-center">
-          <div className="mb-4">
-            <div className="flex items-center justify-center gap-2 text-pink-500">
-        
-            </div>
-          </div>
           <h1 className="text-4xl font-bold text-pink-600 mb-2">🏠 Chá de Casa Nova</h1>
           <p className="text-gray-600 text-lg">Celebre conosco este momento especial!</p>
           <p className="text-pink-500 mt-2 font-semibold">📅 Dia 16 de Agosto às 14h</p>
@@ -257,7 +301,9 @@ function App() {
                 <Heart className="w-6 h-6" />
                 Confirme sua Presença
               </CardTitle>
-              <CardDescription className="text-gray-600">Nós, Alisson & Carol, queremos você ao nosso lado nesse momento mágico, venha compartilhar essa alegria com a gente! </CardDescription>
+              <CardDescription className="text-gray-600">
+                Nós, Alisson & Carol, queremos você ao nosso lado nesse momento mágico, venha compartilhar essa alegria com a gente!
+              </CardDescription>
             </CardHeader>
             <CardContent className="p-6">
               <form onSubmit={handleConfirmarPresenca} className="space-y-6">
@@ -319,40 +365,26 @@ function App() {
         )}
 
         {isAdmin && (
-          <>
-            <Card className="mb-8 shadow-lg border-yellow-200">
-              <CardHeader className="bg-yellow-100">
-                <CardTitle className="text-xl text-yellow-700">🔐 Login Admin</CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <form onSubmit={handleLoginAdmin} className="space-y-4">
-                  <Input type="password" placeholder="Senha admin" value={senhaAdmin} onChange={(e) => setSenhaAdmin(e.target.value)} required />
-                  <Button type="submit" className="w-full bg-yellow-500 hover:bg-yellow-600 text-white">Entrar</Button>
-                  <Button variant="outline" className="w-full mt-2" onClick={() => setIsAdmin(false)}>Cancelar</Button>
-                </form>
-              </CardContent>
-            </Card>
+          <Card className="shadow-lg border-green-200">
+            <CardHeader className="bg-green-100">
+              <CardTitle className="text-xl text-green-700">📋 Lista de Convidados e Presentes</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <h3 className="font-semibold text-gray-800 mb-2">🎉 Convidados Confirmados:</h3>
+              <ul className="list-disc list-inside">
+                {nomesConfirmados().map((c, index) => (
+                  <li key={index}>{c.nome} - {c.acompanhantes} acompanhante(s) - Resposta: {c.resposta}</li>
+                ))}
+              </ul>
 
-            <Card className="shadow-lg border-green-200">
-              <CardHeader className="bg-green-100">
-                <CardTitle className="text-xl text-green-700">🎁 Presentes Escolhidos</CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-gray-800 mb-2">Presentes já escolhidos:</h3>
-                <ul className="list-disc list-inside">
-                  {presentes.filter(p => p.presenteadoPor).map(p => (
-                    <li key={p.id}>{p.nome} - Presenteado por: {p.presenteadoPor}</li>
-                  ))}
-                </ul>
-                <h3 className="font-semibold text-gray-800 mt-4 mb-2">Presentes disponíveis:</h3>
-                <ul className="list-disc list-inside">
-                  {presentes.filter(p => !p.presenteadoPor).map(p => (
-                    <li key={p.id}>{p.nome}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </>
+              <h3 className="font-semibold text-gray-800 mt-6 mb-2">🎁 Presentes já escolhidos:</h3>
+              <ul className="list-disc list-inside">
+                {presentes.filter(p => p.presenteadoPor).map(p => (
+                  <li key={p.id}>{p.nome} - Presenteado por: {p.presenteadoPor}</li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
         )}
       </main>
 
@@ -375,5 +407,4 @@ function App() {
   )
 }
 
-export default App;
-
+export default App
