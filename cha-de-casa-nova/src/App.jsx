@@ -16,66 +16,54 @@ import toalhasDeBanho from './assets/toalhas-de-banho.jpg'
 import tapeteParaSala from './assets/tapete-para-sala.jpg'
 import liquidificador from './assets/liquidificador.jpg'
 import ferroDePassarRoupa from './assets/ferro-de-passar-roupa.jpg'
-import conjuntoDePotes from './assets/conjunto-de-potes.jpg'
+import robo from './assets/robo.jpg'
 import pipoqueira from './assets/pipoqueira.jpg'
-import raladorMultiuso from './assets/ralador-multiuso.jpg'
-import escorredorDeArroz from './assets/escorredor-de-arroz.jpg'
-import escorredorDeMarcarrao from './assets/escorredor-de-macarrao.jpg'
-import batedeira from './assets/batedeira.webp'
+import microondas from './assets/microondas.jpg'
+import pratos from './assets/pratos.jpg'
+import mixer from './assets/mixer.jpg'
 import tabuaDeCorte from './assets/tabua-de-corte.jpg'
 import frigideiraAntiaderente from './assets/frigideira-antiaderente.jpg'
 import sanduicheira from './assets/sanduicheira.jpg'
 import conjuntoDeXicaras from './assets/conjunto-de-xicaras.png'
 import jogoAmericano from './assets/jogo-americano.jpg'
-import baldeDeRoupa from './assets/balde-de-roupa.jpg'
+import balde from './assets/balde.jpg'
 import jogoDeFacas from './assets/jogo-de-facas.jpg'
-import jarra from './assets/jarra.jpg'
-import aventalDeCozinha from './assets/avental-de-cozinha.jpg'
-import escovaSanitaria from './assets/escova-sanitaria.jpg'
+import torneira from './assets/torneira.jpg'
+import towels from './assets/towels.jpg'
 import lixeiraParaBanheiro from './assets/lixeira-para-banheiro.jpg'
-import kitOrganizadorDeArmario from './assets/kit-organizador-de-armario.jpeg'
+import cooktop from './assets/cooktop.jpg'
 import rodoEVassoura from './assets/rodo-e-vassoura.jpg'
 import baldeComEsfregao from './assets/balde-com-esfregao.jpg'
 import toalhaDeMesa from './assets/toalha-de-mesa.jpg'
-import jogoDeTravesseiros from './assets/jogo-de-travesseiros.jpg'
 import espelhoDeParede from './assets/espelho-de-parede.jpg'
-import varalDeChao from './assets/varal-de-chao.jpg'
-import cabidesDeMadeira from './assets/cabides-de-madeira.jpg'
+import varal from './assets/varal.jpg'
 import relogioDeParede from './assets/relogio-de-parede.jpg'
 import portaTemperos from './assets/porta-temperos.jpg'
-import saleiroEPimenteiro from './assets/saleiro-e-pimenteiro.jpg'
-import panoDeChao from './assets/pano-de-chao.jpg'
-import cestoDeRoupaSuja from './assets/cesto-de-roupa-suja.jpeg'
+import cestoDeRoupaSuja from './assets/cesto-de-roupa-suja.jpg'
 import cortinaParaSala from './assets/cortina-para-sala.jpg'
 import cortinaParaQuarto from './assets/cortina-para-quarto.jpg'
-import capaParaAlmofadas from './assets/capa-para-almofadas.png'
+import forno from './assets/forno.jpg'
 import cestoOrganizador from './assets/cesto-organizador.jpg'
 import jogoLencolCasalOuColcha from './assets/jogo-de-lencol-casal-ou-colcha.jpg'
 import garrafaTermica from './assets/garrafa-termica.jpeg'
-import abridorDeGarrafa from './assets/abridor-de-garrafa.jpg'
+import talheres from './assets/talheres.jpg'
 import tapeteParaCozinha from './assets/tapete-para-cozinha.jpg'
-import assadeira from './assets/assadeira.jpg'
-import escumadeira from './assets/escumadeira.jpeg'
-import pegadorDeMarcarrao from './assets/pegador-de-macarrao.jpg'
+import lencol from './assets/lencol.jpg'
 import jarraDeSuco from './assets/jarra-de-suco.jpg'
-import panoDePia from './assets/pano-de-pia.jpg'
-import conjuntoDeMedidores from './assets/conjunto-de-medidores.jpg'
 import jogoDeTravessas from './assets/jogo-de-travessas.jpg'
-import espremedorDeAlho from './assets/espremedor-de-alho.jpg'
 import tapeteDeBanheiro from './assets/tapete-de-banheiro.jpeg'
-import saboneteira from './assets/saboneteira.jpg'
-import portaEscovaDeDentes from './assets/porta-escova-de-dentes.webp'
-import suporteDePapelToalha from './assets/suporte-de-papel-toalha.jpg'
-import portaDetergente from './assets/porta-detergente.jpg'
+import depurador from './assets/depurador.jpg'
+import climatizador from './assets/climatizador.jpg'
+import hermeticos from './assets/hermeticos.jpg'
 import lixeiraDePia from './assets/lixeira-de-pia.jpg'
-import portaCopos from './assets/porta-copos.jpeg'
-import tapeteParaPorta from './assets/tapete-para-porta.jpg'
+import triturador from './assets/triturador.jpg'
+import copos from './assets/copos.jpg'
 import airFryer from "./assets/air-fryer.jpg";
-import almofadaMassageadora from "./assets/almofada-massageadora.jpg";
+import paneladepressao from "./assets/panela-de-pressao.jpg";
 import almofadas from "./assets/almofadas.jpg";
 import aspirador from "./assets/aspirador.jpg";
 import assadeiras from "./assets/assadeiras.jpg";
-import baldeLimpeza from "./assets/balde-limpeza.jpg";
+import tapioqueira from "./assets/tapioqueira.jpg";
 import chuveiro from "./assets/chuveiro.jpg";
 import cafeteira from "./assets/cafeteira.jpg";
 import caixaPrimeirosSocorros from "./assets/caixa-primeiros-socorros.jpg";
@@ -86,9 +74,8 @@ import cortinaQuarto from "./assets/cortina-quarto.jpg";
 import escorredor from "./assets/escorredor.jpg";
 import espelho from "./assets/espelho.jpg";
 import espremedorFrutas from "./assets/espremedor-frutas.jpg";
-import extensaoUsb from "./assets/extensao-usb.jpg";
+import extensao from "./assets/extensao.jpg";
 import filtro from "./assets/filtro.jpg";
-import forma from "./assets/forma.jpg";
 import grill from "./assets/grill.jpg";
 
 
@@ -101,66 +88,54 @@ const presentesIniciais = [
   { id: 6, nome: 'Tapete para sala', imagem: tapeteParaSala },
   { id: 7, nome: 'Liquidificador', imagem: liquidificador },
   { id: 8, nome: 'Ferro de passar roupa', imagem: ferroDePassarRoupa },
-  { id: 9, nome: 'Conjunto de potes', imagem: conjuntoDePotes },
+  { id: 9, nome: 'Robô Aspirador', imagem: robo},
   { id: 10, nome: 'Pipoqueira', imagem: pipoqueira },
-  { id: 11, nome: 'Ralador multiuso', imagem: raladorMultiuso },
-  { id: 12, nome: 'Escorredor de arroz', imagem: escorredorDeArroz },
-  { id: 13, nome: 'Escorredor de macarrão', imagem: escorredorDeMarcarrao },
-  { id: 14, nome: 'Batedeira', imagem: batedeira },
+  { id: 11, nome: 'Microondas', imagem: microondas },
+  { id: 12, nome: 'Pratos jantar porcelanato', imagem: pratos },
+  { id: 14, nome: 'Mixer 3 em 1', imagem: mixer },
   { id: 15, nome: 'Tábua de corte', imagem: tabuaDeCorte },
   { id: 16, nome: 'Frigideira antiaderente', imagem: frigideiraAntiaderente },
   { id: 17, nome: 'Sanduicheira', imagem: sanduicheira },
   { id: 18, nome: 'Conjunto de xícaras', imagem: conjuntoDeXicaras },
   { id: 19, nome: 'Jogo americano', imagem: jogoAmericano },
-  { id: 20, nome: 'Balde de roupa', imagem: baldeDeRoupa },
+  { id: 20, nome: 'Balde Retrátil', imagem: balde },
   { id: 21, nome: 'Jogo de facas', imagem: jogoDeFacas },
-  { id: 22, nome: 'Jarra', imagem: jarra },
-  { id: 23, nome: 'Avental de cozinha', imagem: aventalDeCozinha },
-  { id: 24, nome: 'Escova sanitária', imagem: escovaSanitaria },
+  { id: 23, nome: 'Torneira', imagem: torneira },
+  { id: 24, nome: 'Toalhas', imagem: towels },
   { id: 25, nome: 'Lixeira para banheiro', imagem: lixeiraParaBanheiro },
-  { id: 26, nome: 'Kit organizador de armário', imagem: kitOrganizadorDeArmario },
+  { id: 26, nome: 'Cooktop 05 Bocas', imagem: cooktop },
   { id: 27, nome: 'Rodo e vassoura', imagem: rodoEVassoura },
-  { id: 28, nome: 'Balde com esfregão', imagem: baldeComEsfregao },
+  { id: 28, nome: 'Mop', imagem: baldeComEsfregao },
   { id: 29, nome: 'Toalha de mesa', imagem: toalhaDeMesa },
-  { id: 30, nome: 'Jogo de travesseiros', imagem: jogoDeTravesseiros },
   { id: 31, nome: 'Espelho de parede', imagem: espelhoDeParede },
-  { id: 32, nome: 'Varal de chão', imagem: varalDeChao },
-  { id: 33, nome: 'Cabides de madeira', imagem: cabidesDeMadeira },
+  { id: 32, nome: 'Varal Retrátil de Parede', imagem: varal },
   { id: 34, nome: 'Relógio de parede', imagem: relogioDeParede },
   { id: 35, nome: 'Porta temperos', imagem: portaTemperos },
-  { id: 36, nome: 'Saleiro e pimenteiro', imagem: saleiroEPimenteiro },
-  { id: 37, nome: 'Pano de chão', imagem: panoDeChao },
   { id: 38, nome: 'Cesto de roupa suja', imagem: cestoDeRoupaSuja },
   { id: 39, nome: 'Cortina para sala', imagem: cortinaParaSala },
   { id: 40, nome: 'Cortina para quarto', imagem: cortinaParaQuarto },
-  { id: 41, nome: 'Capa para almofadas', imagem: capaParaAlmofadas },
+  { id: 41, nome: 'Forno Elétrico', imagem: forno },
   { id: 42, nome: 'Cesto organizador', imagem: cestoOrganizador },
-  { id: 43, nome: 'Jogo de lençol casal ou colcha', imagem: jogoLencolCasalOuColcha },
+  { id: 43, nome: 'Jogo de lençol ', imagem: jogoLencolCasalOuColcha },
   { id: 44, nome: 'Garrafa térmica', imagem: garrafaTermica },
-  { id: 45, nome: 'Abridor de garrafa', imagem: abridorDeGarrafa },
+  { id: 45, nome: 'Talheres Inox', imagem: talheres },
   { id: 46, nome: 'Tapete para cozinha', imagem: tapeteParaCozinha },
-  { id: 47, nome: 'Assadeira', imagem: assadeira },
-  { id: 48, nome: 'Escumadeira', imagem: escumadeira },
-  { id: 49, nome: 'Pegador de macarrão', imagem: pegadorDeMarcarrao },
+  { id: 48, nome: 'Jogo de lençol', imagem: lencol },
   { id: 50, nome: 'Jarra de suco', imagem: jarraDeSuco },
-  { id: 51, nome: 'Pano de pia', imagem: panoDePia },
-  { id: 52, nome: 'Conjunto de medidores', imagem: conjuntoDeMedidores },
   { id: 53, nome: 'Jogo de travessas', imagem: jogoDeTravessas },
-  { id: 54, nome: 'Espremedor de alho', imagem: espremedorDeAlho },
   { id: 55, nome: 'Tapete de banheiro', imagem: tapeteDeBanheiro },
-  { id: 56, nome: 'Saboneteira', imagem: saboneteira },
-  { id: 57, nome: 'Porta escova de dentes', imagem: portaEscovaDeDentes },
-  { id: 58, nome: 'Suporte de papel toalha', imagem: suporteDePapelToalha },
-  { id: 59, nome: 'Porta detergente', imagem: portaDetergente },
-  { id: 60, nome: 'Lixeira de pia', imagem: lixeiraDePia },
-  { id: 61, nome: 'Porta copos', imagem: portaCopos },
-  { id: 62, nome: 'Tapete para porta', imagem: tapeteParaPorta },
+  { id: 56, nome: 'Depurador de Cozinha', imagem: depurador },
+  { id: 57, nome: 'Climatizador de Ar', imagem: climatizador },
+  { id: 59, nome: 'Potes herméticos', imagem: hermeticos },
+  { id: 60, nome: 'Lixeira de cozinha', imagem: lixeiraDePia },
+  { id: 61, nome: 'Triturador de alimentos', imagem: triturador },
+  { id: 62, nome: ' Copos almoço', imagem: copos },
     { id: 63, nome: "Air Fryer", imagem: airFryer },
-  { id: 64, nome: "Almofada Massageadora", imagem: almofadaMassageadora },
+  { id: 64, nome: "Panela de Pressão", imagem: paneladepressao },
   { id: 65, nome: "Almofadas", imagem: almofadas },
   { id: 66, nome: "Aspirador", imagem: aspirador },
   { id: 67, nome: "Assadeiras", imagem: assadeiras },
-  { id: 68, nome: "Balde de Limpeza", imagem: baldeLimpeza },
+  { id: 68, nome: "Tapioqueira", imagem: tapioqueira },
   { id: 69, nome: "Chuveiro", imagem: chuveiro },
   { id: 70, nome: "Cafeteira", imagem: cafeteira },
   { id: 71, nome: "Caixa de Primeiros Socorros", imagem: caixaPrimeirosSocorros },
@@ -171,9 +146,8 @@ const presentesIniciais = [
   { id: 76, nome: "Escorredor", imagem: escorredor },
   { id: 77, nome: "Espelho", imagem: espelho },
   { id: 78, nome: "Espremedor de Frutas", imagem: espremedorFrutas },
-  { id: 79, nome: "Extensão USB", imagem: extensaoUsb },
-  { id: 80, nome: "Filtro", imagem: filtro },
-  { id: 81, nome: "Forma", imagem: forma },
+  { id: 79, nome: "Extensão", imagem: extensao },
+  { id: 80, nome: "Purificador de Água", imagem: filtro },
   { id: 82, nome: "Grill", imagem: grill },
 
 ]
