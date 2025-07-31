@@ -1,63 +1,63 @@
-import { useEffect, useState } from 'react'
-import { Button } from '@/components/ui/button.jsx'
-import { Input } from '@/components/ui/input.jsx'
-import { Label } from '@/components/ui/label.jsx'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group.jsx'
-import { Heart, ArrowUp, Share2 } from 'lucide-react'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button.jsx';
+import { Input } from '@/components/ui/input.jsx';
+import { Label } from '@/components/ui/label.jsx';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group.jsx';
+import { Heart, ArrowUp, Share2 } from 'lucide-react';
+import './App.css';
 
 // Imagens dos presentes
-import conjuntoTalheresInox from './assets/conjunto-talheres-inox.jpg'
-import jogoCopoAmericano from './assets/jogo-copo-americano.webp'
-import pratosPorcelanatoVerde from './assets/pratos-porcelanato-verde.webp'
-import jogoCamaCasal from './assets/jogo-cama-casal.jpg'
-import toalhasDeBanho from './assets/toalhas-de-banho.jpg'
-import tapeteParaSala from './assets/tapete-para-sala.jpg'
-import liquidificador from './assets/liquidificador.jpg'
-import ferroDePassarRoupa from './assets/ferro-de-passar-roupa.jpg'
-import robo from './assets/robo.jpg'
-import pipoqueira from './assets/pipoqueira.jpg'
-import microondas from './assets/microondas.jpg'
-import pratos from './assets/pratos.jpg'
-import mixer from './assets/mixer.jpg'
-import tabuaDeCorte from './assets/tabua-de-corte.jpg'
-import frigideiraAntiaderente from './assets/frigideira-antiaderente.jpg'
-import sanduicheira from './assets/sanduicheira.jpg'
-import conjuntoDeXicaras from './assets/conjunto-de-xicaras.png'
-import jogoAmericano from './assets/jogo-americano.jpg'
-import balde from './assets/balde.jpg'
-import jogoDeFacas from './assets/jogo-de-facas.jpg'
-import torneira from './assets/torneira.jpg'
-import towels from './assets/towels.jpg'
-import lixeiraParaBanheiro from './assets/lixeira-para-banheiro.jpg'
-import cooktop from './assets/cooktop.jpg'
-import rodoEVassoura from './assets/rodo-e-vassoura.jpg'
-import baldeComEsfregao from './assets/balde-com-esfregao.jpg'
-import toalhaDeMesa from './assets/toalha-de-mesa.jpg'
-import espelhoDeParede from './assets/espelho-de-parede.jpg'
-import varal from './assets/varal.jpg'
-import relogioDeParede from './assets/relogio-de-parede.jpg'
-import portaTemperos from './assets/porta-temperos.jpg'
-import cestoDeRoupaSuja from './assets/cesto-de-roupa-suja.jpg'
-import cortinaParaSala from './assets/cortina-para-sala.jpg'
-import cortinaParaQuarto from './assets/cortina-para-quarto.jpg'
-import forno from './assets/forno.jpg'
-import cestoOrganizador from './assets/cesto-organizador.jpg'
-import jogoLencolCasalOuColcha from './assets/jogo-de-lencol-casal-ou-colcha.jpg'
-import garrafaTermica from './assets/garrafa-termica.jpeg'
-import talheres from './assets/talheres.jpg'
-import tapeteParaCozinha from './assets/tapete-para-cozinha.jpg'
-import lencol from './assets/lencol.jpg'
-import jarraDeSuco from './assets/jarra-de-suco.jpg'
-import jogoDeTravessas from './assets/jogo-de-travessas.jpg'
-import tapeteDeBanheiro from './assets/tapete-de-banheiro.jpeg'
-import depurador from './assets/depurador.jpg'
-import climatizador from './assets/climatizador.jpg'
-import hermeticos from './assets/hermeticos.jpg'
-import lixeiraDePia from './assets/lixeira-de-pia.jpg'
-import triturador from './assets/triturador.jpg'
-import copos from './assets/copos.jpg'
+import conjuntoTalheresInox from './assets/conjunto-talheres-inox.jpg';
+import jogoCopoAmericano from './assets/jogo-copo-americano.webp';
+import pratosPorcelanatoVerde from './assets/pratos-porcelanato-verde.webp';
+import jogoCamaCasal from './assets/jogo-cama-casal.jpg';
+import toalhasDeBanho from './assets/toalhas-de-banho.jpg';
+import tapeteParaSala from './assets/tapete-para-sala.jpg';
+import liquidificador from './assets/liquidificador.jpg';
+import ferroDePassarRoupa from './assets/ferro-de-passar-roupa.jpg';
+import robo from './assets/robo.jpg';
+import pipoqueira from './assets/pipoqueira.jpg';
+import microondas from './assets/microondas.jpg';
+import pratos from './assets/pratos.jpg';
+import mixer from './assets/mixer.jpg';
+import tabuaDeCorte from './assets/tabua-de-corte.jpg';
+import frigideiraAntiaderente from './assets/frigideira-antiaderente.jpg';
+import sanduicheira from './assets/sanduicheira.jpg';
+import conjuntoDeXicaras from './assets/conjunto-de-xicaras.png';
+import jogoAmericano from './assets/jogo-americano.jpg';
+import balde from './assets/balde.jpg';
+import jogoDeFacas from './assets/jogo-de-facas.jpg';
+import torneira from './assets/torneira.jpg';
+import towels from './assets/towels.jpg';
+import lixeiraParaBanheiro from './assets/lixeira-para-banheiro.jpg';
+import cooktop from './assets/cooktop.jpg';
+import rodoEVassoura from './assets/rodo-e-vassoura.jpg';
+import baldeComEsfregao from './assets/balde-com-esfregao.jpg';
+import toalhaDeMesa from './assets/toalha-de-mesa.jpg';
+import espelhoDeParede from './assets/espelho-de-parede.jpg';
+import varal from './assets/varal.jpg';
+import relogioDeParede from './assets/relogio-de-parede.jpg';
+import portaTemperos from './assets/porta-temperos.jpg';
+import cestoDeRoupaSuja from './assets/cesto-de-roupa-suja.jpg';
+import cortinaParaSala from './assets/cortina-para-sala.jpg';
+import cortinaParaQuarto from './assets/cortina-para-quarto.jpg';
+import forno from './assets/forno.jpg';
+import cestoOrganizador from './assets/cesto-organizador.jpg';
+import jogoLencolCasalOuColcha from './assets/jogo-de-lencol-casal-ou-colcha.jpg';
+import garrafaTermica from './assets/garrafa-termica.jpeg';
+import talheres from './assets/talheres.jpg';
+import tapeteParaCozinha from './assets/tapete-para-cozinha.jpg';
+import lencol from './assets/lencol.jpg';
+import jarraDeSuco from './assets/jarra-de-suco.jpg';
+import jogoDeTravessas from './assets/jogo-de-travessas.jpg';
+import tapeteDeBanheiro from './assets/tapete-de-banheiro.jpeg';
+import depurador from './assets/depurador.jpg';
+import climatizador from './assets/climatizador.jpg';
+import hermeticos from './assets/hermeticos.jpg';
+import lixeiraDePia from './assets/lixeira-de-pia.jpg';
+import triturador from './assets/triturador.jpg';
+import copos from './assets/copos.jpg';
 import airFryer from "./assets/air-fryer.jpg";
 import paneladepressao from "./assets/panela-de-pressao.jpg";
 import almofadas from "./assets/almofadas.jpg";
@@ -77,8 +77,14 @@ import espremedorFrutas from "./assets/espremedor-frutas.jpg";
 import extensao from "./assets/extensao.jpg";
 import filtro from "./assets/filtro.jpg";
 import grill from "./assets/grill.jpg";
+import kitbanheiro from "./assets/kitbanheiro.jpg"; 
+import tigelas from "./assets/tigelas.jpg";
+import pote from "./assets/pote.jpg"; 
+import boleira from "./assets/boleira.jpg";
 
 
+
+import cofrinho from "./assets/cofrinho.jpg"; 
 const presentesIniciais = [
   { id: 1, nome: 'Conjunto de talheres inox', imagem: conjuntoTalheresInox },
   { id: 2, nome: 'Jogo de copo americano', imagem: jogoCopoAmericano },
@@ -88,7 +94,7 @@ const presentesIniciais = [
   { id: 6, nome: 'Tapete para sala', imagem: tapeteParaSala },
   { id: 7, nome: 'Liquidificador', imagem: liquidificador },
   { id: 8, nome: 'Ferro de passar roupa', imagem: ferroDePassarRoupa },
-  { id: 9, nome: 'Robô Aspirador', imagem: robo},
+  { id: 9, nome: 'Robô Aspirador', imagem: robo },
   { id: 10, nome: 'Pipoqueira', imagem: pipoqueira },
   { id: 11, nome: 'Microondas', imagem: microondas },
   { id: 12, nome: 'Pratos jantar porcelanato', imagem: pratos },
@@ -130,7 +136,7 @@ const presentesIniciais = [
   { id: 60, nome: 'Lixeira de cozinha', imagem: lixeiraDePia },
   { id: 61, nome: 'Triturador de alimentos', imagem: triturador },
   { id: 62, nome: ' Copos almoço', imagem: copos },
-    { id: 63, nome: "Air Fryer", imagem: airFryer },
+  { id: 63, nome: "Air Fryer", imagem: airFryer },
   { id: 64, nome: "Panela de Pressão", imagem: paneladepressao },
   { id: 65, nome: "Almofadas", imagem: almofadas },
   { id: 66, nome: "Aspirador", imagem: aspirador },
@@ -149,92 +155,127 @@ const presentesIniciais = [
   { id: 79, nome: "Extensão", imagem: extensao },
   { id: 80, nome: "Purificador de Água", imagem: filtro },
   { id: 82, nome: "Grill", imagem: grill },
+  { id: 84, nome: "Kit Banheiro Lavabo", imagem: kitbanheiro },
+  { id: 85, nome: "Tigelas Bowl Bambu", imagem: tigelas },
+  { id: 86, nome: "Pote de Vidro - Retangular 4 Travas  ", imagem: pote },
+  { id: 87, nome: "Boleira Bambu com Tampa em Acrílico", imagem: boleira }, 
 
-]
+
+  { id: 83, nome: "Vale Pix do Amor", imagem: cofrinho }, 
+];
 
 function App() {
-  const [nomeCompleto, setNomeCompleto] = useState('')
-  const [confirmarPresenca, setConfirmarPresenca] = useState('')
-  const [quantasPessoas, setQuantasPessoas] = useState('')
-  const [mostrarFormulario, setMostrarFormulario] = useState(true)
-  const [showScrollTop, setShowScrollTop] = useState(false)
-  const [presentes, setPresentes] = useState([])
-  const [isAdmin, setIsAdmin] = useState(false)
-  const [senhaAdmin, setSenhaAdmin] = useState('')
+  const [nomeCompleto, setNomeCompleto] = useState('');
+  const [confirmarPresenca, setConfirmarPresenca] = useState('');
+  const [quantasPessoas, setQuantasPessoas] = useState('');
+  const [mostrarFormulario, setMostrarFormulario] = useState(true);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [presentes, setPresentes] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [senhaAdmin, setSenhaAdmin] = useState('');
 
   useEffect(() => {
-    const salvos = localStorage.getItem('presentesEscolhidos')
+    const salvos = localStorage.getItem('presentesEscolhidos');
     if (salvos) {
-      setPresentes(JSON.parse(salvos))
+      setPresentes(JSON.parse(salvos));
     } else {
-      setPresentes(presentesIniciais.map(p => ({ ...p, presenteadoPor: null })))
+      // Para cada presente, se não for o "Vale Pix do Amor", inicialize com presenteadoPor: null
+      // Se for o "Vale Pix do Amor", inicialize com um array vazio para guardar múltiplos nomes
+      setPresentes(presentesIniciais.map(p => ({
+        ...p,
+        presenteadoPor: p.nome === 'Vale Pix do Amor' ? [] : null
+      })));
     }
 
-    const nomeSalvo = localStorage.getItem('nomeCompleto')
-    if (nomeSalvo) setNomeCompleto(nomeSalvo)
-  }, [])
+    const nomeSalvo = localStorage.getItem('nomeCompleto');
+    if (nomeSalvo) setNomeCompleto(nomeSalvo);
+  }, []);
 
   useEffect(() => {
-    const onScroll = () => setShowScrollTop(window.scrollY > 300)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const onScroll = () => setShowScrollTop(window.scrollY > 300);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleConfirmarPresenca = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (nomeCompleto && confirmarPresenca && quantasPessoas) {
-      localStorage.setItem('nomeCompleto', nomeCompleto)
+      localStorage.setItem('nomeCompleto', nomeCompleto);
 
-      let convidados = localStorage.getItem('convidadosConfirmados')
-      convidados = convidados ? JSON.parse(convidados) : []
+      let convidados = localStorage.getItem('convidadosConfirmados');
+      convidados = convidados ? JSON.parse(convidados) : [];
 
-      const jaExiste = convidados.some(c => c.nome === nomeCompleto)
+      const jaExiste = convidados.some(c => c.nome === nomeCompleto);
       if (!jaExiste) {
         convidados.push({
           nome: nomeCompleto,
           acompanhantes: quantasPessoas,
           resposta: confirmarPresenca,
-        })
-        localStorage.setItem('convidadosConfirmados', JSON.stringify(convidados))
+        });
+        localStorage.setItem('convidadosConfirmados', JSON.stringify(convidados));
       }
 
-      alert(`Obrigado ${nomeCompleto}! Sua presença foi confirmada.`)
-      setMostrarFormulario(false)
+      alert(`Obrigado ${nomeCompleto}! Sua presença foi confirmada.`);
+      setMostrarFormulario(false);
     } else {
-      alert('Por favor, preencha todos os campos.')
+      alert('Por favor, preencha todos os campos.');
     }
-  }
+  };
 
   const handlePresentear = (id) => {
-    const novos = presentes.map(p =>
-      p.id === id ? { ...p, presenteadoPor: nomeCompleto } : p
-    )
-    setPresentes(novos)
-    localStorage.setItem('presentesEscolhidos', JSON.stringify(novos))
-  }
+    // Verifique se o nome completo está preenchido
+    if (!nomeCompleto) {
+      alert('Por favor, preencha seu nome completo antes de escolher um presente.');
+      return;
+    }
+
+    const novos = presentes.map(p => {
+      if (p.id === id) {
+        // Se for o "Vale Pix do Amor", adiciona o nome à lista
+        if (p.nome === 'Vale Pix do Amor') {
+          // Verifica se o nome já está na lista para evitar duplicatas
+          const presenteadoPorLista = Array.isArray(p.presenteadoPor) ? p.presenteadoPor : [];
+          if (!presenteadoPorLista.includes(nomeCompleto)) {
+            return { ...p, presenteadoPor: [...presenteadoPorLista, nomeCompleto] };
+          }
+          return p; // Não faz nada se o nome já presenteou
+        } else {
+          // Para outros presentes, se já foi presenteado por alguém, não faz nada
+          if (p.presenteadoPor) {
+            return p;
+          }
+          return { ...p, presenteadoPor: nomeCompleto };
+        }
+      }
+      return p;
+    });
+    setPresentes(novos);
+    localStorage.setItem('presentesEscolhidos', JSON.stringify(novos));
+  };
+
 
   const compartilharWhatsApp = () => {
-    const mensagem = `Você está convidado(a) para o nosso Chá de Casa Nova! 🏠✨\nDia 16/08 às 14h!\nConfirme sua presença e escolha um presente especial para nós:\n${window.location.href}`
-    const url = `https://wa.me/?text=${encodeURIComponent(mensagem)}`
-    window.open(url, '_blank')
-  }
+    const mensagem = `Você está convidado(a) para o nosso Chá de Casa Nova! 🏠✨\nDia 16/08 às 14h!\nConfirme sua presença e escolha um presente especial para nós:\n${window.location.href}`;
+    const url = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
+  };
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   const nomesConfirmados = () => {
-    let convidados = localStorage.getItem('convidadosConfirmados')
-    return convidados ? JSON.parse(convidados) : []
-  }
+    let convidados = localStorage.getItem('convidadosConfirmados');
+    return convidados ? JSON.parse(convidados) : [];
+  };
 
   const handleLoginAdmin = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (senhaAdmin === 'admin123') {
-      setIsAdmin(true)
-      setSenhaAdmin('')
+      setIsAdmin(true);
+      setSenhaAdmin('');
     } else {
-      alert('Senha incorreta!')
+      alert('Senha incorreta!');
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
@@ -242,7 +283,7 @@ function App() {
         <div className="relative z-10 container mx-auto px-4 py-16 text-center">
           <h1 className="text-4xl font-bold text-pink-600 mb-2">🏠 Chá de Casa Nova</h1>
           <p className="text-gray-600 text-lg">Celebre conosco este momento especial!</p>
-          <p className="text-pink-500 mt-2 font-semibold">📅 Dia 16 de Agosto às 14h</p>
+          <p className="text-pink-500 mt-2 font-semibold">📅 Dia 27 de Setembro às 13h</p>
           {!isAdmin && (
             <Button variant="outline" size="sm" className="mt-4" onClick={() => setIsAdmin('login')}>
               Acesso Admin
@@ -317,8 +358,10 @@ function App() {
             <CardContent className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {presentes.map((presente) => {
-                  const foiPresenteado = !!presente.presenteadoPor
-                  const vocePresenteou = presente.presenteadoPor === nomeCompleto
+                  const isValePixDoAmor = presente.nome === 'Vale Pix do Amor'; // ATENÇÃO: Nome verificado aqui!
+                  const foiPresenteado = isValePixDoAmor ? presente.presenteadoPor && presente.presenteadoPor.length > 0 : !!presente.presenteadoPor;
+                  const vocePresenteou = isValePixDoAmor ? (presente.presenteadoPor && presente.presenteadoPor.includes(nomeCompleto)) : (presente.presenteadoPor === nomeCompleto);
+
                   return (
                     <div key={presente.id} className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
                       <div className="aspect-square overflow-hidden">
@@ -326,12 +369,16 @@ function App() {
                       </div>
                       <div className="p-4 text-center">
                         <h3 className="font-semibold text-gray-800 mb-3">{presente.nome}</h3>
-                        <Button onClick={() => handlePresentear(presente.id)} disabled={foiPresenteado} className={`w-full py-2 text-white ${vocePresenteou ? 'bg-green-600' : foiPresenteado ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600'}`}>
-                          {vocePresenteou ? '🎉 Ótima escolha!' : foiPresenteado ? '❌ Já presenteado' : '🎁 Quero Presentear'}
+                        <Button
+                          onClick={() => handlePresentear(presente.id)}
+                          disabled={!isValePixDoAmor && foiPresenteado} // Desabilita apenas se NÃO for Vale Pix do Amor e já foi presenteado
+                          className={`w-full py-2 text-white ${vocePresenteou ? 'bg-green-600' : (!isValePixDoAmor && foiPresenteado) ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600'}`}
+                        >
+                          {vocePresenteou ? '🎉 Ótima escolha!' : (!isValePixDoAmor && foiPresenteado) ? '❌ Já presenteado' : '🎁 Quero Presentear'}
                         </Button>
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
             </CardContent>
@@ -353,8 +400,11 @@ function App() {
 
               <h3 className="font-semibold text-gray-800 mt-6 mb-2">🎁 Presentes já escolhidos:</h3>
               <ul className="list-disc list-inside">
-                {presentes.filter(p => p.presenteadoPor).map(p => (
-                  <li key={p.id}>{p.nome} - Presenteado por: {p.presenteadoPor}</li>
+                {presentes.filter(p => p.presenteadoPor && (Array.isArray(p.presenteadoPor) ? p.presenteadoPor.length > 0 : p.presenteadoPor)).map(p => (
+                  <li key={p.id}>
+                    {p.nome} - Presenteado por:
+                    {Array.isArray(p.presenteadoPor) ? p.presenteadoPor.join(', ') : p.presenteadoPor}
+                  </li>
                 ))}
               </ul>
             </CardContent>
@@ -378,7 +428,7 @@ function App() {
         </button>
       )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
