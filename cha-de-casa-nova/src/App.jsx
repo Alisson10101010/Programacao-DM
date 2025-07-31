@@ -129,7 +129,7 @@ const presentesIniciais = [
   { id: 48, nome: 'Jogo de lençol', imagem: lencol },
   { id: 50, nome: 'Jarra de suco', imagem: jarraDeSuco },
   { id: 53, nome: 'Jogo de travessas', imagem: jogoDeTravessas },
-  { id: 55, nome: 'Tapete de banheiro', imagem: tapeteDeBanheiro },
+  { id: 55, nome: 'Tapete de Banheiro', imagem: tapeteDeBanheiro },
   { id: 56, nome: 'Depurador de Cozinha', imagem: depurador },
   { id: 57, nome: 'Climatizador de Ar', imagem: climatizador },
   { id: 59, nome: 'Potes herméticos', imagem: hermeticos },
