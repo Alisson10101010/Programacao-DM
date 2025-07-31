@@ -20,7 +20,7 @@ import robo from './assets/robo.jpg';
 import pipoqueira from './assets/pipoqueira.jpg';
 import microondas from './assets/microondas.jpg';
 import pratos from './assets/pratos.jpg';
-import mixer from './assets/mixer.jpg';
+import mixer from './assets/Mixer.jpg';
 import tabuaDeCorte from './assets/tabua-de-corte.jpg';
 import frigideiraAntiaderente from './assets/frigideira-antiaderente.jpg';
 import sanduicheira from './assets/sanduicheira.jpg';
