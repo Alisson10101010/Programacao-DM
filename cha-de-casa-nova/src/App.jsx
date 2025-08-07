@@ -81,6 +81,8 @@ import kitbanheiro from "./assets/kitbanheiro.jpg";
 import tigelas from "./assets/tigelas.jpg";
 import pote from "./assets/pote.jpg"; 
 import boleira from "./assets/boleira.jpg";
+import tabua from "./assets/tabua.jpg";
+import churrasco from "./assets/churrasco.jpg";
 
 
 
@@ -100,7 +102,7 @@ const presentesIniciais = [
   { id: 12, nome: 'Pratos jantar porcelanato', imagem: pratos },
   { id: 14, nome: 'Mixer 3 em 1', imagem: mixer },
   { id: 15, nome: 'Tábua de corte', imagem: tabuaDeCorte },
-  { id: 16, nome: 'Frigideira antiaderente', imagem: frigideiraAntiaderente },
+  { id: 16, nome: 'Frigideira antiaderente - Com Tampa', imagem: frigideiraAntiaderente },
   { id: 17, nome: 'Sanduicheira', imagem: sanduicheira },
   { id: 18, nome: 'Conjunto de xícaras', imagem: conjuntoDeXicaras },
   { id: 19, nome: 'Jogo americano', imagem: jogoAmericano },
@@ -158,6 +160,8 @@ const presentesIniciais = [
   { id: 84, nome: "Kit Banheiro Lavabo", imagem: kitbanheiro },
   { id: 85, nome: "Tigelas Bowl Bambu", imagem: tigelas },
   { id: 86, nome: "Pote de Vidro - Retangular 4 Travas  ", imagem: pote },
+  { id: 88, nome: "Tábua de Passar Roupa", imagem: tabua },
+  { id: 89, nome: "KIT Churrasco", imagem: churrasco },
   { id: 87, nome: "Boleira Bambu com Tampa em Acrílico", imagem: boleira }, 
 
 
