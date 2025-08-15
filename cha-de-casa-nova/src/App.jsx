@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button.jsx';
 import { Input } from '@/components/ui/input.jsx';
-import { Label } from '@/components/ui/label.jsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group.jsx';
-import { Heart, ArrowUp, Share2 } from 'lucide-react';
+import { ArrowUp, Share2 } from 'lucide-react';
 import './App.css';
 
 // Imagens dos presentes
@@ -77,16 +75,13 @@ import espremedorFrutas from "./assets/espremedor-frutas.jpg";
 import extensao from "./assets/extensao.jpg";
 import filtro from "./assets/filtro.jpg";
 import grill from "./assets/grill.jpg";
-import kitbanheiro from "./assets/kitbanheiro.jpg"; 
+import kitbanheiro from "./assets/kitbanheiro.jpg";
 import tigelas from "./assets/tigelas.jpg";
-import pote from "./assets/pote.jpg"; 
+import pote from "./assets/pote.jpg";
 import boleira from "./assets/boleira.jpg";
 import tabua from "./assets/tabua.jpg";
 import churrasco from "./assets/churrasco.jpg";
-
-
-
-import cofrinho from "./assets/cofrinho.jpg"; 
+import cofrinho from "./assets/cofrinho.jpg";
 const presentesIniciais = [
   { id: 1, nome: 'Conjunto de talheres inox', imagem: conjuntoTalheresInox },
   { id: 2, nome: 'Jogo de copo americano', imagem: jogoCopoAmericano },
@@ -159,20 +154,15 @@ const presentesIniciais = [
   { id: 82, nome: "Grill", imagem: grill },
   { id: 84, nome: "Kit Banheiro Lavabo", imagem: kitbanheiro },
   { id: 85, nome: "Tigelas Bowl Bambu", imagem: tigelas },
-  { id: 86, nome: "Pote de Vidro - Retangular 4 Travas  ", imagem: pote },
+  { id: 86, nome: "Pote de Vidro - Retangular 4 Travas  ", imagem: pote },
   { id: 88, nome: "Tábua de Passar Roupa", imagem: tabua },
   { id: 89, nome: "KIT Churrasco", imagem: churrasco },
-  { id: 87, nome: "Boleira Bambu com Tampa em Acrílico", imagem: boleira }, 
-
-
-  { id: 83, nome: "Vale Pix do Amor", imagem: cofrinho }, 
+  { id: 87, nome: "Boleira Bambu com Tampa em Acrílico", imagem: boleira },
+  { id: 83, nome: "Vale Pix do Amor", imagem: cofrinho },
 ];
 
 function App() {
   const [nomeCompleto, setNomeCompleto] = useState('');
-  const [confirmarPresenca, setConfirmarPresenca] = useState('');
-  const [quantasPessoas, setQuantasPessoas] = useState('');
-  const [mostrarFormulario, setMostrarFormulario] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [presentes, setPresentes] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -183,8 +173,6 @@ function App() {
     if (salvos) {
       setPresentes(JSON.parse(salvos));
     } else {
-      // Para cada presente, se não for o "Vale Pix do Amor", inicialize com presenteadoPor: null
-      // Se for o "Vale Pix do Amor", inicialize com um array vazio para guardar múltiplos nomes
       setPresentes(presentesIniciais.map(p => ({
         ...p,
         presenteadoPor: p.nome === 'Vale Pix do Amor' ? [] : null
@@ -201,33 +189,7 @@ function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleConfirmarPresenca = (e) => {
-    e.preventDefault();
-    if (nomeCompleto && confirmarPresenca && quantasPessoas) {
-      localStorage.setItem('nomeCompleto', nomeCompleto);
-
-      let convidados = localStorage.getItem('convidadosConfirmados');
-      convidados = convidados ? JSON.parse(convidados) : [];
-
-      const jaExiste = convidados.some(c => c.nome === nomeCompleto);
-      if (!jaExiste) {
-        convidados.push({
-          nome: nomeCompleto,
-          acompanhantes: quantasPessoas,
-          resposta: confirmarPresenca,
-        });
-        localStorage.setItem('convidadosConfirmados', JSON.stringify(convidados));
-      }
-
-      alert(`Obrigado ${nomeCompleto}! Sua presença foi confirmada.`);
-      setMostrarFormulario(false);
-    } else {
-      alert('Por favor, preencha todos os campos.');
-    }
-  };
-
   const handlePresentear = (id) => {
-    // Verifique se o nome completo está preenchido
     if (!nomeCompleto) {
       alert('Por favor, preencha seu nome completo antes de escolher um presente.');
       return;
@@ -235,16 +197,13 @@ function App() {
 
     const novos = presentes.map(p => {
       if (p.id === id) {
-        // Se for o "Vale Pix do Amor", adiciona o nome à lista
         if (p.nome === 'Vale Pix do Amor') {
-          // Verifica se o nome já está na lista para evitar duplicatas
           const presenteadoPorLista = Array.isArray(p.presenteadoPor) ? p.presenteadoPor : [];
           if (!presenteadoPorLista.includes(nomeCompleto)) {
             return { ...p, presenteadoPor: [...presenteadoPorLista, nomeCompleto] };
           }
-          return p; // Não faz nada se o nome já presenteou
+          return p;
         } else {
-          // Para outros presentes, se já foi presenteado por alguém, não faz nada
           if (p.presenteadoPor) {
             return p;
           }
@@ -265,11 +224,6 @@ function App() {
   };
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  const nomesConfirmados = () => {
-    let convidados = localStorage.getItem('convidadosConfirmados');
-    return convidados ? JSON.parse(convidados) : [];
-  };
 
   const handleLoginAdmin = (e) => {
     e.preventDefault();
@@ -313,45 +267,10 @@ function App() {
           </Card>
         )}
 
-        {!isAdmin && mostrarFormulario && (
-          <Card className="mb-8 shadow-lg border-pink-200">
-            <CardHeader className="bg-gradient-to-r from-pink-100 to-purple-100">
-              <CardTitle className="text-2xl text-pink-700 flex items-center gap-2">
-                <Heart className="w-6 h-6" />
-                Confirme sua Presença
-              </CardTitle>
-              <CardDescription className="text-gray-600">
-                Nós, Alisson & Carol, queremos você ao nosso lado nesse momento mágico, venha compartilhar essa alegria com a gente!
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-6">
-              <form onSubmit={handleConfirmarPresenca} className="space-y-6">
-                <div>
-                  <Label htmlFor="nome">Nome completo:</Label>
-                  <Input id="nome" type="text" value={nomeCompleto} onChange={(e) => setNomeCompleto(e.target.value)} required />
-                </div>
-                <div>
-                  <Label>Confirmar presença:</Label>
-                  <RadioGroup value={confirmarPresenca} onValueChange={setConfirmarPresenca}>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="sim" id="sim" />
-                      <Label htmlFor="sim">Sim, estarei presente! 🎉</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="nao" id="nao" />
-                      <Label htmlFor="nao">Não poderei comparecer 😢</Label>
-                    </div>
-                  </RadioGroup>
-                </div>
-                <div>
-                  <Label htmlFor="pessoas">Quantas pessoas vão com você?:</Label>
-                  <Input id="pessoas" type="number" min="0" max="10" value={quantasPessoas} onChange={(e) => setQuantasPessoas(e.target.value)} required />
-                </div>
-                <Button className="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 text-lg" type="submit">Confirmar Presença ✨</Button>
-              </form>
-            </CardContent>
-          </Card>
-        )}
+        {/* Novo texto adicionado no lugar do formulário */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold text-gray-800">🎁 "Escolha seu presente no catálogo e fale com o casal para confirmar a disponibilidade."</h2>
+        </div>
 
         {!isAdmin && (
           <Card className="shadow-lg border-pink-200">
@@ -362,7 +281,7 @@ function App() {
             <CardContent className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {presentes.map((presente) => {
-                  const isValePixDoAmor = presente.nome === 'Vale Pix do Amor'; // ATENÇÃO: Nome verificado aqui!
+                  const isValePixDoAmor = presente.nome === 'Vale Pix do Amor';
                   const foiPresenteado = isValePixDoAmor ? presente.presenteadoPor && presente.presenteadoPor.length > 0 : !!presente.presenteadoPor;
                   const vocePresenteou = isValePixDoAmor ? (presente.presenteadoPor && presente.presenteadoPor.includes(nomeCompleto)) : (presente.presenteadoPor === nomeCompleto);
 
@@ -375,7 +294,7 @@ function App() {
                         <h3 className="font-semibold text-gray-800 mb-3">{presente.nome}</h3>
                         <Button
                           onClick={() => handlePresentear(presente.id)}
-                          disabled={!isValePixDoAmor && foiPresenteado} // Desabilita apenas se NÃO for Vale Pix do Amor e já foi presenteado
+                          disabled={!isValePixDoAmor && foiPresenteado}
                           className={`w-full py-2 text-white ${vocePresenteou ? 'bg-green-600' : (!isValePixDoAmor && foiPresenteado) ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600'}`}
                         >
                           {vocePresenteou ? '🎉 Ótima escolha!' : (!isValePixDoAmor && foiPresenteado) ? '❌ Já presenteado' : '🎁 Quero Presentear'}
@@ -392,16 +311,9 @@ function App() {
         {isAdmin && (
           <Card className="shadow-lg border-green-200">
             <CardHeader className="bg-green-100">
-              <CardTitle className="text-xl text-green-700">📋 Lista de Convidados e Presentes</CardTitle>
+              <CardTitle className="text-xl text-green-700">📋 Lista de Presentes</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <h3 className="font-semibold text-gray-800 mb-2">🎉 Convidados Confirmados:</h3>
-              <ul className="list-disc list-inside">
-                {nomesConfirmados().map((c, index) => (
-                  <li key={index}>{c.nome} - {c.acompanhantes} acompanhante(s) - Resposta: {c.resposta}</li>
-                ))}
-              </ul>
-
               <h3 className="font-semibold text-gray-800 mt-6 mb-2">🎁 Presentes já escolhidos:</h3>
               <ul className="list-disc list-inside">
                 {presentes.filter(p => p.presenteadoPor && (Array.isArray(p.presenteadoPor) ? p.presenteadoPor.length > 0 : p.presenteadoPor)).map(p => (
