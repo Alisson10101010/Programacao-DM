@@ -82,83 +82,86 @@ import boleira from "./assets/boleira.jpg";
 import tabua from "./assets/tabua.jpg";
 import churrasco from "./assets/churrasco.jpg";
 import cofrinho from "./assets/cofrinho.jpg";
+
+
+// Lista de presentes com os já escolhidos preenchidos
 const presentesIniciais = [
-  { id: 1, nome: 'Conjunto de talheres inox', imagem: conjuntoTalheresInox },
-  { id: 2, nome: 'Jogo de copo americano', imagem: jogoCopoAmericano },
-  { id: 3, nome: 'Pratos de porcelanato verde', imagem: pratosPorcelanatoVerde },
-  { id: 4, nome: 'Jogo de cama casal', imagem: jogoCamaCasal },
-  { id: 5, nome: 'Toalhas de banho', imagem: toalhasDeBanho },
-  { id: 6, nome: 'Tapete para sala', imagem: tapeteParaSala },
-  { id: 7, nome: 'Liquidificador', imagem: liquidificador },
-  { id: 8, nome: 'Ferro de passar roupa', imagem: ferroDePassarRoupa },
-  { id: 9, nome: 'Robô Aspirador', imagem: robo },
-  { id: 10, nome: 'Pipoqueira', imagem: pipoqueira },
-  { id: 11, nome: 'Microondas', imagem: microondas },
-  { id: 12, nome: 'Pratos jantar porcelanato', imagem: pratos },
-  { id: 14, nome: 'Mixer 3 em 1', imagem: mixer },
-  { id: 15, nome: 'Tábua de corte', imagem: tabuaDeCorte },
-  { id: 16, nome: 'Frigideira antiaderente - Com Tampa', imagem: frigideiraAntiaderente },
-  { id: 17, nome: 'Sanduicheira', imagem: sanduicheira },
-  { id: 18, nome: 'Conjunto de xícaras', imagem: conjuntoDeXicaras },
-  { id: 19, nome: 'Jogo americano', imagem: jogoAmericano },
-  { id: 20, nome: 'Balde Retrátil', imagem: balde },
-  { id: 21, nome: 'Jogo de facas', imagem: jogoDeFacas },
-  { id: 23, nome: 'Torneira', imagem: torneira },
-  { id: 24, nome: 'Toalhas', imagem: towels },
-  { id: 25, nome: 'Lixeira para banheiro', imagem: lixeiraParaBanheiro },
-  { id: 26, nome: 'Cooktop 05 Bocas', imagem: cooktop },
-  { id: 27, nome: 'Rodo e vassoura', imagem: rodoEVassoura },
-  { id: 28, nome: 'Mop', imagem: baldeComEsfregao },
-  { id: 29, nome: 'Toalha de mesa', imagem: toalhaDeMesa },
-  { id: 31, nome: 'Espelho de parede', imagem: espelhoDeParede },
-  { id: 32, nome: 'Varal Retrátil de Parede', imagem: varal },
-  { id: 34, nome: 'Relógio de parede', imagem: relogioDeParede },
-  { id: 35, nome: 'Porta temperos', imagem: portaTemperos },
-  { id: 38, nome: 'Cesto de roupa suja', imagem: cestoDeRoupaSuja },
-  { id: 39, nome: 'Cortina para sala', imagem: cortinaParaSala },
-  { id: 40, nome: 'Cortina para quarto', imagem: cortinaParaQuarto },
-  { id: 41, nome: 'Forno Elétrico', imagem: forno },
-  { id: 42, nome: 'Cesto organizador', imagem: cestoOrganizador },
-  { id: 43, nome: 'Jogo de lençol ', imagem: jogoLencolCasalOuColcha },
-  { id: 44, nome: 'Garrafa térmica', imagem: garrafaTermica },
-  { id: 45, nome: 'Talheres Inox', imagem: talheres },
-  { id: 46, nome: 'Tapete para cozinha', imagem: tapeteParaCozinha },
-  { id: 48, nome: 'Jogo de lençol', imagem: lencol },
-  { id: 50, nome: 'Jarra de suco', imagem: jarraDeSuco },
-  { id: 53, nome: 'Jogo de Travessas', imagem: jogoDeTravessas },
-  { id: 55, nome: 'Tapete de Banheiro', imagem: tapeteDeBanheiro },
-  { id: 56, nome: 'Depurador de Cozinha', imagem: depurador },
-  { id: 57, nome: 'Climatizador de Ar', imagem: climatizador },
-  { id: 59, nome: 'Potes herméticos', imagem: hermeticos },
-  { id: 60, nome: 'Lixeira de cozinha', imagem: lixeiraDePia },
-  { id: 61, nome: 'Triturador de alimentos', imagem: triturador },
-  { id: 62, nome: ' Copos almoço', imagem: copos },
-  { id: 63, nome: "Air Fryer", imagem: airFryer },
-  { id: 64, nome: "Panela de Pressão", imagem: paneladepressao },
-  { id: 65, nome: "Almofadas", imagem: almofadas },
-  { id: 66, nome: "Aspirador", imagem: aspirador },
-  { id: 67, nome: "Assadeiras", imagem: assadeiras },
-  { id: 68, nome: "Tapioqueira", imagem: tapioqueira },
-  { id: 69, nome: "Chuveiro", imagem: chuveiro },
-  { id: 70, nome: "Cafeteira", imagem: cafeteira },
-  { id: 71, nome: "Caixa de Primeiros Socorros", imagem: caixaPrimeirosSocorros },
-  { id: 72, nome: "Churrasqueira", imagem: churrasqueira },
-  { id: 73, nome: "Colcha", imagem: colcha },
-  { id: 74, nome: "Copos de Jantar", imagem: coposJantar },
-  { id: 75, nome: "Cortina para Quarto", imagem: cortinaQuarto },
-  { id: 76, nome: "Escorredor", imagem: escorredor },
-  { id: 77, nome: "Espelho", imagem: espelho },
-  { id: 78, nome: "Espremedor de Frutas", imagem: espremedorFrutas },
-  { id: 79, nome: "Extensão", imagem: extensao },
-  { id: 80, nome: "Purificador de Água", imagem: filtro },
-  { id: 82, nome: "Grill", imagem: grill },
-  { id: 84, nome: "Kit Banheiro Lavabo", imagem: kitbanheiro },
-  { id: 85, nome: "Tigelas Bowl Bambu", imagem: tigelas },
-  { id: 86, nome: "Pote de Vidro - Retangular 4 Travas  ", imagem: pote },
-  { id: 88, nome: "Tábua de Passar Roupa", imagem: tabua },
-  { id: 89, nome: "KIT Churrasco", imagem: churrasco },
-  { id: 87, nome: "Boleira Bambu com Tampa em Acrílico", imagem: boleira },
-  { id: 83, nome: "Vale Pix do Amor", imagem: cofrinho },
+  { id: 1, nome: 'Conjunto de talheres inox', imagem: conjuntoTalheresInox, presenteadoPor: null },
+  { id: 2, nome: 'Jogo de copo americano', imagem: jogoCopoAmericano, presenteadoPor: 'Michelle Lays' },
+  { id: 3, nome: 'Pratos de porcelanato verde', imagem: pratosPorcelanatoVerde, presenteadoPor: null },
+  { id: 4, nome: 'Jogo de cama casal', imagem: jogoCamaCasal, presenteadoPor: null },
+  { id: 5, nome: 'Toalhas de banho', imagem: toalhasDeBanho, presenteadoPor: null },
+  { id: 6, nome: 'Tapete para sala', imagem: tapeteParaSala, presenteadoPor: null },
+  { id: 7, nome: 'Liquidificador', imagem: liquidificador, presenteadoPor: 'Zilda' },
+  { id: 8, nome: 'Ferro de passar roupa', imagem: ferroDePassarRoupa, presenteadoPor: 'Luis (icesp)' },
+  { id: 9, nome: 'Robô Aspirador', imagem: robo, presenteadoPor: null },
+  { id: 10, nome: 'Pipoqueira', imagem: pipoqueira, presenteadoPor: 'Mãe da Josi' },
+  { id: 11, nome: 'Microondas', imagem: microondas, presenteadoPor: 'Jaqueline' },
+  { id: 12, nome: 'Pratos jantar porcelanato', imagem: pratos, presenteadoPor: 'Vanessa (CASSI)' },
+  { id: 14, nome: 'Mixer 3 em 1', imagem: mixer, presenteadoPor: null },
+  { id: 15, nome: 'Tábua de corte', imagem: tabuaDeCorte, presenteadoPor: null },
+  { id: 16, nome: 'Frigideira antiaderente - Com Tampa', imagem: frigideiraAntiaderente, presenteadoPor: 'Filipi' },
+  { id: 17, nome: 'Sanduicheira', imagem: sanduicheira, presenteadoPor: 'Amanda' },
+  { id: 18, nome: 'Conjunto de xícaras', imagem: conjuntoDeXicaras, presenteadoPor: null },
+  { id: 19, nome: 'Jogo americano', imagem: jogoAmericano, presenteadoPor: null },
+  { id: 20, nome: 'Balde Retrátil', imagem: balde, presenteadoPor: null },
+  { id: 21, nome: 'Jogo de facas', imagem: jogoDeFacas, presenteadoPor: 'Alanna' },
+  { id: 23, nome: 'Torneira', imagem: torneira, presenteadoPor: null },
+  { id: 24, nome: 'Toalhas', imagem: towels, presenteadoPor: null },
+  { id: 25, nome: 'Lixeira para banheiro', imagem: lixeiraParaBanheiro, presenteadoPor: null },
+  { id: 26, nome: 'Cooktop 05 Bocas', imagem: cooktop, presenteadoPor: 'Daniel (família)' },
+  { id: 27, nome: 'Rodo e vassoura', imagem: rodoEVassoura, presenteadoPor: null },
+  { id: 28, nome: 'Mop', imagem: baldeComEsfregao, presenteadoPor: null },
+  { id: 29, nome: 'Toalha de mesa', imagem: toalhaDeMesa, presenteadoPor: null },
+  { id: 31, nome: 'Espelho de parede', imagem: espelhoDeParede, presenteadoPor: null },
+  { id: 32, nome: 'Varal Retrátil de Parede', imagem: varal, presenteadoPor: null },
+  { id: 34, nome: 'Relógio de parede', imagem: relogioDeParede, presenteadoPor: null },
+  { id: 35, nome: 'Porta temperos', imagem: portaTemperos, presenteadoPor: 'Caroline' },
+  { id: 38, nome: 'Cesto de roupa suja', imagem: cestoDeRoupaSuja, presenteadoPor: null },
+  { id: 39, nome: 'Cortina para sala', imagem: cortinaParaSala, presenteadoPor: null },
+  { id: 40, nome: 'Cortina para quarto', imagem: cortinaParaQuarto, presenteadoPor: null },
+  { id: 41, nome: 'Forno Elétrico', imagem: forno, presenteadoPor: null },
+  { id: 42, nome: 'Cesto organizador', imagem: cestoOrganizador, presenteadoPor: null },
+  { id: 43, nome: 'Jogo de lençol ', imagem: jogoLencolCasalOuColcha, presenteadoPor: null },
+  { id: 44, nome: 'Garrafa térmica', imagem: garrafaTermica, presenteadoPor: null },
+  { id: 45, nome: 'Talheres Inox', imagem: talheres, presenteadoPor: 'Alanna' },
+  { id: 46, nome: 'Tapete para cozinha', imagem: tapeteParaCozinha, presenteadoPor: null },
+  { id: 48, nome: 'Jogo de lençol', imagem: lencol, presenteadoPor: null },
+  { id: 50, nome: 'Jarra de suco', imagem: jarraDeSuco, presenteadoPor: 'Dein' },
+  { id: 53, nome: 'Jogo de Travessas', imagem: jogoDeTravessas, presenteadoPor: null },
+  { id: 55, nome: 'Tapete de Banheiro', imagem: tapeteDeBanheiro, presenteadoPor: null },
+  { id: 56, nome: 'Depurador de Cozinha', imagem: depurador, presenteadoPor: null },
+  { id: 57, nome: 'Climatizador de Ar', imagem: climatizador, presenteadoPor: null },
+  { id: 59, nome: 'Potes herméticos', imagem: hermeticos, presenteadoPor: null },
+  { id: 60, nome: 'Lixeira de cozinha', imagem: lixeiraDePia, presenteadoPor: null },
+  { id: 61, nome: 'Triturador de alimentos', imagem: triturador, presenteadoPor: 'Amanda' },
+  { id: 62, nome: ' Copos almoço', imagem: copos, presenteadoPor: 'Thais' },
+  { id: 63, nome: "Air Fryer", imagem: airFryer, presenteadoPor: 'Josi' },
+  { id: 64, nome: "Panela de Pressão", imagem: paneladepressao, presenteadoPor: 'Victor' },
+  { id: 65, nome: "Almofadas", imagem: almofadas, presenteadoPor: null },
+  { id: 66, nome: "Aspirador", imagem: aspirador, presenteadoPor: 'Thaísa' },
+  { id: 67, nome: "Assadeiras", imagem: assadeiras, presenteadoPor: null },
+  { id: 68, nome: "Tapioqueira", imagem: tapioqueira, presenteadoPor: null },
+  { id: 69, nome: "Chuveiro", imagem: chuveiro, presenteadoPor: 'Jaqueline' },
+  { id: 70, nome: "Cafeteira", imagem: cafeteira, presenteadoPor: null },
+  { id: 71, nome: "Caixa de Primeiros Socorros", imagem: caixaPrimeirosSocorros, presenteadoPor: null },
+  { id: 72, nome: "Churrasqueira", imagem: churrasqueira, presenteadoPor: 'Guilherme' },
+  { id: 73, nome: "Colcha", imagem: colcha, presenteadoPor: null },
+  { id: 74, nome: "Copos de Jantar", imagem: coposJantar, presenteadoPor: 'Dein' },
+  { id: 75, nome: "Cortina para Quarto", imagem: cortinaQuarto, presenteadoPor: null },
+  { id: 76, nome: "Escorredor", imagem: escorredor, presenteadoPor: null },
+  { id: 77, nome: "Espelho", imagem: espelho, presenteadoPor: null },
+  { id: 78, nome: "Espremedor de Frutas", imagem: espremedorFrutas, presenteadoPor: null },
+  { id: 79, nome: "Extensão", imagem: extensao, presenteadoPor: null },
+  { id: 80, nome: "Purificador de Água", imagem: filtro, presenteadoPor: null },
+  { id: 82, nome: "Grill", imagem: grill, presenteadoPor: null },
+  { id: 84, nome: "Kit Banheiro Lavabo", imagem: kitbanheiro, presenteadoPor: null },
+  { id: 85, nome: "Tigelas Bowl Bambu", imagem: tigelas, presenteadoPor: null },
+  { id: 86, nome: "Pote de Vidro - Retangular 4 Travas ", imagem: pote, presenteadoPor: null },
+  { id: 88, nome: "Tábua de Passar Roupa", imagem: tabua, presenteadoPor: null },
+  { id: 89, nome: "KIT Churrasco", imagem: churrasco, presenteadoPor: 'Filipi' },
+  { id: 87, nome: "Boleira Bambu com Tampa em Acrílico", imagem: boleira, presenteadoPor: null },
+  { id: 83, nome: "Vale Pix do Amor", imagem: cofrinho, presenteadoPor: [] },
 ];
 
 function App() {
@@ -173,10 +176,7 @@ function App() {
     if (salvos) {
       setPresentes(JSON.parse(salvos));
     } else {
-      setPresentes(presentesIniciais.map(p => ({
-        ...p,
-        presenteadoPor: p.nome === 'Vale Pix do Amor' ? [] : null
-      })));
+      setPresentes(presentesIniciais); // Usar a nova lista já preenchida
     }
 
     const nomeSalvo = localStorage.getItem('nomeCompleto');
@@ -218,7 +218,7 @@ function App() {
 
 
   const compartilharWhatsApp = () => {
-    const mensagem = `Você está convidado(a) para o nosso Chá de Casa Nova! 🏠✨\nDia 16/08 às 14h!\nConfirme sua presença e escolha um presente especial para nós:\n${window.location.href}`;
+    const mensagem = `Você está convidado(a) para o nosso Chá de Casa Nova! 🏠✨\nDia 27 de Setembro às 13h!\nConfirme sua presença e escolha um presente especial para nós:\n${window.location.href}`;
     const url = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
   };
@@ -297,7 +297,7 @@ function App() {
                           disabled={!isValePixDoAmor && foiPresenteado}
                           className={`w-full py-2 text-white ${vocePresenteou ? 'bg-green-600' : (!isValePixDoAmor && foiPresenteado) ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600'}`}
                         >
-                          {vocePresenteou ? '🎉 Ótima escolha!' : (!isValePixDoAmor && foiPresenteado) ? '❌ Já presenteado' : '🎁 Quero Presentear'}
+                          {vocePresenteou ? '🎉 Ótima escolha!' : (!isValePixDoAmor && foiPresenteado) ? '❌ Já Presenteado' : '🎁 Quero Presentear'}
                         </Button>
                       </div>
                     </div>
